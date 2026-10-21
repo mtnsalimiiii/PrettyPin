@@ -14,6 +14,7 @@ const products = [
     image: product1,
     isFavorite: false,
     inStock: true,
+    slug: "HairAccessory",
     categoryPath: [
       { label: "اکسسوری مو", href: "/category/hair-accessories" },
       { label: "کش مو", href: "/category/hair-accessories/elastics" },
@@ -27,6 +28,7 @@ const products = [
     image: product2,
     isFavorite: false,
     inStock: true,
+    slug: "HairAccessory",
     categoryPath: [
       { label: "اکسسوری مو", href: "/category/hair-accessories" },
       { label: "گیره سر", href: "/category/hair-accessories/clips" },
@@ -40,6 +42,7 @@ const products = [
     image: product3,
     isFavorite: false,
     inStock: false,
+    slug: "Other",
     categoryPath: [
       { label: "اکسسوری مو", href: "/category/hair-accessories" },
       { label: "هدبند", href: "/category/hair-accessories/headbands" },
@@ -53,6 +56,7 @@ const products = [
     image: product4,
     isFavorite: false,
     inStock: true,
+    slug: "HairAccessory",
     categoryPath: [
       { label: "اکسسوری مو", href: "/category/hair-accessories" },
       { label: "سنجاق سر", href: "/category/hair-accessories/pins" },
@@ -66,6 +70,7 @@ const products = [
     image: product1,
     isFavorite: false,
     inStock: true,
+    slug: "HairAccessory",
     categoryPath: [
       { label: "اکسسوری مو", href: "/category/hair-accessories" },
       { label: "کش مو", href: "/category/hair-accessories/elastics" },
@@ -80,6 +85,7 @@ const products = [
     isFavorite: false,
     // موقتاً false گذاشته شده تا بتونیم حالت «ناموجود» رو در UI تست کنیم
     inStock: false,
+    slug: "HairAccessory",
     categoryPath: [
       { label: "اکسسوری مو", href: "/category/hair-accessories" },
       { label: "گیره سر", href: "/category/hair-accessories/clips" },
@@ -93,6 +99,7 @@ const products = [
     image: product3,
     isFavorite: false,
     inStock: true,
+    slug: "Other",
     categoryPath: [
       { label: "اکسسوری مو", href: "/category/hair-accessories" },
       { label: "هدبند", href: "/category/hair-accessories/headbands" },
@@ -106,6 +113,7 @@ const products = [
     image: product4,
     isFavorite: false,
     inStock: true,
+    slug: "HairAccessory",
     categoryPath: [
       { label: "اکسسوری مو", href: "/category/hair-accessories" },
       { label: "سنجاق سر", href: "/category/hair-accessories/pins" },
@@ -119,6 +127,7 @@ const products = [
     image: product1,
     isFavorite: false,
     inStock: true,
+    slug: "HairAccessory",
     categoryPath: [
       { label: "اکسسوری مو", href: "/category/hair-accessories" },
       { label: "کش مو", href: "/category/hair-accessories/elastics" },
@@ -132,6 +141,7 @@ const products = [
     image: product2,
     isFavorite: false,
     inStock: true,
+    slug: "HairAccessory",
     categoryPath: [
       { label: "اکسسوری مو", href: "/category/hair-accessories" },
       { label: "گیره سر", href: "/category/hair-accessories/clips" },

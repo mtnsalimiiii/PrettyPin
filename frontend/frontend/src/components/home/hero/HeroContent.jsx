@@ -8,7 +8,7 @@ const HeroContent = ({ slide }) => {
         absolute inset-x-0 bottom-0 flex flex-col px-4 pb-6 text-right text-white
         sm:inset-y-0 sm:inset-x-auto sm:right-0 sm:w-full sm:max-w-105
         sm:justify-center sm:px-8 sm:pb-0
-        md:max-w-140 md:px-10
+        md:max-w-140 md:px-32
       "
     >
       <h1 className="text-xl font-bold leading-[1.35] sm:text-4xl md:text-5xl">

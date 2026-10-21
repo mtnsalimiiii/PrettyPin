@@ -5,18 +5,7 @@ import SearchToggle from "./mainHeader/SearchToggle.jsx";
 import accountLinks from "../../data/accountLinks.js";
 import useAccountMenu from "../../hooks/useAccountMenu.js";
 import ConfirmDialog from "../common/ConfirmDialog.jsx";
-
-const navLinks = [
-    "جدیدترین‌ها",
-    "اکسسوری مو",
-    "زیورآلات",
-    "آرایشی",
-    "بافت مو",
-    "ساعت و عینک",
-    "پیشنهاد ویژه",
-    "بلاگ",
-    "تماس با ما",
-];
+import categories from "../../data/categories.js";
 
 const MobileMenu = ({isOpen, onClose}) => {
     const [isAccountOpen, setIsAccountOpen] = useState(false);
@@ -53,15 +42,11 @@ const MobileMenu = ({isOpen, onClose}) => {
             <SearchToggle/>
 
             <ul className="mt-6 flex flex-col gap-4">
-                {navLinks.map((item) => (
-                    <li key={item}>
-                        <a
-                            href="#"
-                            onClick={onClose}
-                            className="block text-base font-bold text-black transition hover:text-pink-500"
-                        >
-                            {item}
-                        </a>
+                {categories.map((item) => (
+                    <li key={item.id}>
+                        <Link to={`/Category/${item.slug}`} className="text-sm font-bold text-black transition hover:text-pink-500">
+                            {item.label}
+                        </Link>
                     </li>
                 ))}
             </ul>
