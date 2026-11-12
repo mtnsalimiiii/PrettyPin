@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import ProductRating from "./ProductRating.jsx";
 import ProductPrice from "./ProductPrice.jsx";
 import ColorSelector from "./ColorSelector.jsx";
@@ -13,10 +14,18 @@ const ProductInfo = ({ product }) => {
 
     const { addItem } = useCart();
 
+    const isOutOfStock = !product.inStock;
+
     const handleIncrease = () => setQuantity((prev) => prev + 1);
     const handleDecrease = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
     const handleAddToCart = () => {
+        // محافظ اصلی: محصول ناموجود هرگز نباید وارد سبد شود، حتی اگر ظاهر دکمه خراب شود
+        if (isOutOfStock) {
+            toast.error("این محصول ناموجود است");
+            return;
+        }
+
         addItem(product, { color: selectedColor, size: selectedSize, quantity });
     };
 
@@ -44,6 +53,7 @@ const ProductInfo = ({ product }) => {
                 onIncrease={handleIncrease}
                 onDecrease={handleDecrease}
                 onAddToCart={handleAddToCart}
+                isOutOfStock={isOutOfStock}
             />
         </div>
     );

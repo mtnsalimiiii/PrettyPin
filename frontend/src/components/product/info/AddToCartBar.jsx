@@ -1,20 +1,34 @@
 import { Minus, Plus, ShoppingBag } from "lucide-react";
 
-const AddToCartBar = ({ quantity, onIncrease, onDecrease, onAddToCart }) => {
+const AddToCartBar = ({ quantity, onIncrease, onDecrease, onAddToCart, isOutOfStock = false }) => {
     return (
         <div className="flex items-center gap-3" dir="rtl">
-            {/* این دکمه اول نوشته می‌شود تا در dir="rtl" سمت راست بنشیند */}
+            {/* disabled واقعی نمی‌گذاریم، چون آن‌وقت کلیک اصلاً ثبت نمی‌شود و توست نمایش داده نمی‌شود */}
             <button
                 type="button"
                 onClick={onAddToCart}
-                className="flex flex-1 items-center justify-center gap-2 rounded-2xl bg-primary py-3.5 text-base font-bold text-white transition hover:bg-primary-dark"
+                aria-disabled={isOutOfStock}
+                className={`flex flex-1 items-center justify-center gap-2 rounded-2xl py-3.5 text-base font-bold transition ${
+                    isOutOfStock
+                        ? "cursor-not-allowed bg-gray-200 text-gray-400"
+                        : "bg-primary text-white hover:bg-primary-dark"
+                }`}
             >
                 <ShoppingBag size={20} />
-                افزودن به سبد خرید
+                {isOutOfStock ? "ناموجود" : "افزودن به سبد خرید"}
             </button>
 
-            <div className="flex items-center gap-4 rounded-2xl border border-gray-300 px-4 py-3.5">
-                <button type="button" onClick={onIncrease} className="text-gray-700 transition hover:text-primary">
+            <div
+                className={`flex items-center gap-4 rounded-2xl border border-gray-300 px-4 py-3.5 ${
+                    isOutOfStock ? "opacity-40" : ""
+                }`}
+            >
+                <button
+                    type="button"
+                    onClick={onIncrease}
+                    disabled={isOutOfStock}
+                    className="text-gray-700 transition hover:text-primary disabled:cursor-not-allowed disabled:hover:text-gray-700"
+                >
                     <Plus size={18} />
                 </button>
 
@@ -23,8 +37,8 @@ const AddToCartBar = ({ quantity, onIncrease, onDecrease, onAddToCart }) => {
                 <button
                     type="button"
                     onClick={onDecrease}
-                    disabled={quantity <= 1}
-                    className="text-gray-700 transition hover:text-primary disabled:opacity-30"
+                    disabled={isOutOfStock || quantity <= 1}
+                    className="text-gray-700 transition hover:text-primary disabled:cursor-not-allowed disabled:opacity-30"
                 >
                     <Minus size={18} />
                 </button>

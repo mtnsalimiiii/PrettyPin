@@ -3,8 +3,10 @@ import Container from "../../common/Container.jsx";
 import ProductCard from "./ProductCard.jsx";
 
 const ProductSection = ({ id, title, products, limit = 4 }) => {
-  const visibleProducts = products.slice(0, limit);
-  const hasMore = products.length > limit;
+  // فقط محصولات موجود؛ فیلتر باید قبل از slice باشد تا تعداد نمایش‌داده‌شده کم نشود
+  const availableProducts = products.filter((p) => p.inStock);
+  const visibleProducts = availableProducts.slice(0, limit);
+  const hasMore = availableProducts.length > limit;
 
   const handleViewAll = () => {
     console.log(`مشاهده همه محصولات بخش: ${title}`);
@@ -12,34 +14,34 @@ const ProductSection = ({ id, title, products, limit = 4 }) => {
   };
 
   return (
-    <section
-      id={id}
-      dir="rtl"
-      className="scroll-mt-20 py-8 sm:scroll-mt-24 sm:py-10 md:scroll-mt-28"
-    >
-      <Container>
-        <div className="flex items-center justify-between">
-          <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">{title}</h2>
+      <section
+          id={id}
+          dir="rtl"
+          className="scroll-mt-20 py-8 sm:scroll-mt-24 sm:py-10 md:scroll-mt-28"
+      >
+        <Container>
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">{title}</h2>
 
-          {hasMore && (
-            <button
-              type="button"
-              onClick={handleViewAll}
-              className="flex shrink-0 items-center gap-1 text-sm font-semibold text-pink-500 transition hover:gap-2"
-            >
-              مشاهده همه
-              <ArrowLeft size={16} />
-            </button>
-          )}
-        </div>
+            {hasMore && (
+                <button
+                    type="button"
+                    onClick={handleViewAll}
+                    className="flex shrink-0 items-center gap-1 text-sm font-semibold text-pink-500 transition hover:gap-2"
+                >
+                  مشاهده همه
+                  <ArrowLeft size={16} />
+                </button>
+            )}
+          </div>
 
-        <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 lg:gap-6">
-          {visibleProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      </Container>
-    </section>
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 lg:gap-6">
+            {visibleProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </Container>
+      </section>
   );
 };
 

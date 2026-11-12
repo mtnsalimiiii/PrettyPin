@@ -1,15 +1,12 @@
 import { useState } from "react";
 import { Heart, ChevronLeft, ChevronRight, Expand } from "lucide-react";
+import ImageLightbox from "./ImageLightbox.jsx";
+
+
 
 const ProductMainImage = ({ image, alt = "تصویر محصول", badge, onPrev, onNext }) => {
     const [isFavorite, setIsFavorite] = useState(false);
-    const [zoomedImage, setZoomedImage] = useState(null);
-
-    const isZoomed = zoomedImage === image;
-
-    const handleToggleZoom = () => {
-        setZoomedImage(isZoomed ? null : image);
-    };
+    const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
     return (
         <div className="relative overflow-hidden rounded-2xl bg-gray-50 sm:rounded-3xl">
@@ -40,9 +37,8 @@ const ProductMainImage = ({ image, alt = "تصویر محصول", badge, onPrev,
                     <img
                         src={image}
                         alt={alt}
-                        className={`block w-full object-cover transition-transform duration-500 ${
-                            isZoomed ? "scale-150" : "scale-100"
-                        }`}
+                        onClick={() => setIsLightboxOpen(true)}
+                        className="block w-full cursor-zoom-in object-cover"
                     />
                 </div>
             </div>
@@ -70,13 +66,20 @@ const ProductMainImage = ({ image, alt = "تصویر محصول", badge, onPrev,
             {/* دکمه بزرگ‌نمایی - گوشه پایین-راست */}
             <button
                 type="button"
-                aria-label={isZoomed ? "خروج از بزرگ‌نمایی" : "بزرگ‌نمایی تصویر"}
-                aria-pressed={isZoomed}
-                onClick={handleToggleZoom}
+                aria-label="بزرگ‌نمایی تصویر"
+                onClick={() => setIsLightboxOpen(true)}
                 className="absolute bottom-4 right-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 shadow-sm transition hover:scale-110 sm:h-10 sm:w-10"
             >
                 <Expand size={16} className="text-gray-700" />
             </button>
+
+            <ImageLightbox
+                isOpen={isLightboxOpen}
+                image={image}
+                alt={alt}
+                onClose={() => setIsLightboxOpen(false)}
+            />
+
         </div>
     );
 };
