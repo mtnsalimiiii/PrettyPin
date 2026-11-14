@@ -69,7 +69,7 @@ export function CartProvider({ children }) {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(state.items));
     }, [state.items]);
 
-    const addItem = (product, { color, size, quantity = 1 } = {}) => {
+    const addItem = (product, { color, size, colorLabel, sizeLabel, quantity = 1 } = {}) => {
         const key = buildKey(product.id, color, size);
         const finalPrice = product.discountPercent
             ? product.price - (product.price * product.discountPercent) / 100
@@ -86,6 +86,8 @@ export function CartProvider({ children }) {
                     price: finalPrice,
                     color: color ?? null,
                     size: size ?? null,
+                    colorLabel: colorLabel ?? null,
+                    sizeLabel: sizeLabel ?? null,
                     quantity,
                 },
             },

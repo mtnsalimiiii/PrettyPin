@@ -2,13 +2,15 @@ import { Heart, ShoppingBag } from "lucide-react";
 import IconButton from "../../common/IconButton.jsx";
 import AccountMenu from "./AccountMenu.jsx";
 import { useCart } from "../../../context/CartContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 const HeaderActions = ({ mobile = false }) => {
     const { totalCount } = useCart();
+    const navigate = useNavigate();
 
     return (
         <div className="flex items-center gap-2 sm:gap-3 md:gap-5">
-            <IconButton label="سبد خرید" badgeCount={totalCount}>
+            <IconButton label="سبد خرید" badgeCount={totalCount} onClick={() => navigate("/cart")}>
                 <ShoppingBag size={20} />
             </IconButton>
 

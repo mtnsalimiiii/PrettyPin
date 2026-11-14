@@ -5,6 +5,7 @@ import RegisterPage from "../pages/Register/RegisterPage";
 import ForgotPasswordPage from "../pages/ForgotPassword/ForgotPasswordPage";
 import ProductDetailsPage from "../pages/ProductDetails/ProductDetailsPage";
 import CategoryPage from "../pages/Category/CategoryPage.jsx";
+import CartPage from "../pages/Cart/CartPage.jsx";
 
 export default function AppRoutes() {
   return (
@@ -15,6 +16,7 @@ export default function AppRoutes() {
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/products/:id" element={<ProductDetailsPage />} />
         <Route path="/Category/:slug" element={<CategoryPage/>} />
+        <Route path="/cart" element={<CartPage />} />
     </Routes>
   );
 }

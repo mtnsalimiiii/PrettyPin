@@ -26,7 +26,13 @@ const ProductInfo = ({ product }) => {
             return;
         }
 
-        addItem(product, { color: selectedColor, size: selectedSize, quantity });
+        addItem(product, {
+            color: selectedColor,
+            size: selectedSize,
+            colorLabel: product.colors.find((c) => c.id === selectedColor)?.label,
+            sizeLabel: product.sizes.find((s) => s.id === selectedSize)?.label,
+            quantity,
+        });
     };
 
     return (
